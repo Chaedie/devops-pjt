@@ -58,3 +58,16 @@ $ aws eks update-kubeconfig \
   --name staging-demo \
   --profile developer
 ```
+
+```bash
+$ aws configure --profile manager
+$ aws sts assume-role \ 
+  --role-arn arn:aws:iam::039612876607:role/staging-demo-eks-admin \
+  --role-session-name manager-session \
+  --profile manager
+$ aws eks update-kubeconfig \
+  --region ap-northeast-2 \
+  --name staging-demo \
+  --profile eks-admin
+$ kubectl config view --minify
+```
