@@ -41,7 +41,20 @@
 - Nodes (Managed by AWS)
 
 ```bash
-$ aws eks update-kubeconfig --region ap-northeast-2 --name staging-demo # kubectl to eks
+$ aws eks update-kubeconfig \
+  --region ap-northeast-2 \
+  --name staging-demo # make kubectl towards eks
 $ kubectl get nodes
 $ kubectl auth can-i "*" "*"
+```
+
+## 3. Add IAM User & IAM Role to AWS EKS
+
+```bash
+$ aws configure --profile developer
+$ aws sts get-caller-identity --profile developer
+$ aws eks update-kubeconfig \
+  --region ap-northeast-2 \
+  --name staging-demo \
+  --profile developer
 ```
